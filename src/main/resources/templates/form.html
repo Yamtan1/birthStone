@@ -1,50 +1,111 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-<meta charset="UTF-8">
-<title>탄생석 등록/수정</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>탄생석 등록/수정</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;600&display=swap');
 
-<!-- ⬇︎ CSS ONLY -->
-<style>
-  @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap');
-  :root{--primary:#5ee7df;--accent:#b490ca;--bg-dark:#0f2027;--bg-mid:#203a43;--bg-light:#2c5364;--white:#ffffff;}
-  *{box-sizing:border-box;margin:0;padding:0}
-  body{
-    min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;
-    font-family:'Poppins',sans-serif;color:var(--white);
-    background:linear-gradient(135deg,var(--bg-dark),var(--bg-mid),var(--bg-light));
-    text-align:center;padding:1rem;
-  }
-  h2{font-size:2rem;font-weight:700;margin-bottom:1rem;text-shadow:0 0 8px rgba(0,0,0,.6)}
-  form{
-    background:rgba(255,255,255,.06);backdrop-filter:blur(6px);
-    padding:2rem 2.5rem;border-radius:1rem;
-    box-shadow:0 8px 20px rgba(0,0,0,.35);display:inline-block
-  }
-  input[type=text]{
-    width:220px;margin:0.4rem 0;padding:0.55rem 0.8rem;border:none;border-radius:0.6rem;
-    background:rgba(255,255,255,.15);color:var(--white);font-size:0.95rem;
-  }
-  button{
-    margin-top:0.8rem;padding:0.6rem 1.3rem;border:none;border-radius:0.75rem;
-    background:var(--primary);color:#0f2027;font-weight:600;cursor:pointer;
-    transition:.25s transform,.25s box-shadow;
-    box-shadow:0 4px 10px rgba(0,0,0,.35);
-  }
-  button:hover{transform:translateY(-3px) scale(1.04);box-shadow:0 6px 14px rgba(0,0,0,.45)}
-  a{display:inline-block;margin-top:1.2rem;color:var(--primary);font-weight:600;text-decoration:none}
-  a:hover{text-decoration:underline}
-</style>
+    :root {
+      --primary: #5ee7df;
+      --accent: #b490ca;
+      --bg-dark: #0f2027;
+      --bg-mid: #203a43;
+      --bg-light: #2c5364;
+      --white: #ffffff;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      background: linear-gradient(135deg, var(--bg-dark), var(--bg-mid), var(--bg-light));
+      color: var(--white);
+      font-family: 'Poppins', sans-serif;
+      padding: 2rem;
+    }
+
+    h2 {
+      text-align: center;
+      margin-bottom: 1rem;
+    }
+
+    form {
+      max-width: 500px;
+      margin: 0 auto;
+      background: rgba(255, 255, 255, 0.05);
+      padding: 1.5rem;
+      border-radius: 10px;
+    }
+
+    label {
+      display: block;
+      margin-top: 1rem;
+      font-weight: 600;
+    }
+
+    input[type="text"] {
+      width: 100%;
+      padding: 0.75rem;
+      border: none;
+      border-radius: 6px;
+      margin-top: 0.5rem;
+    }
+
+    button {
+      margin-top: 1.5rem;
+      width: 100%;
+      padding: 0.75rem;
+      font-weight: bold;
+      background: var(--primary);
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      color: var(--bg-dark);
+    }
+
+    button:hover {
+      background: var(--accent);
+      color: white;
+    }
+
+    .back-link {
+      display: block;
+      text-align: center;
+      margin-top: 1rem;
+      color: var(--primary);
+      text-decoration: none;
+    }
+
+    .back-link:hover {
+      color: white;
+    }
+  </style>
 </head>
 <body>
-<h2>탄생석 등록/수정</h2>
-<form action="/save" method="post" th:object="${stone}">
+
+  <h2>🎯 탄생석 등록/수정</h2>
+
+  <form action="/save" method="post" th:object="${stone}">
     <input type="hidden" th:field="*{id}" />
-    월: <input type="text" th:field="*{month}" /><br>
-    탄생석: <input type="text" th:field="*{stone}" /><br>
-    설명: <input type="text" th:field="*{content}" /><br>
+    
+    <label for="month">월</label>
+    <input type="text" id="month" th:field="*{month}" placeholder="예: 1" required />
+    
+    <label for="stone">탄생석</label>
+    <input type="text" id="stone" th:field="*{stone}" placeholder="예: 가넷" required />
+    
+    <label for="content">설명</label>
+    <input type="text" id="content" th:field="*{content}" placeholder="설명을 입력하세요" required />
+    
     <button type="submit">저장</button>
-</form>
-<a href="/list">🔙 목록으로</a>
+  </form>
+
+  <a href="/list" class="back-link">🔙 목록으로 돌아가기</a>
+
 </body>
 </html>

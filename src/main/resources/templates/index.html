@@ -1,103 +1,137 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
-<title>나의 탄생석을 알아보자</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>나의 탄생석을 알아보자</title>
 
-<!-- ⬇︎ CSS ONLY: 여기에 스타일을 삽입했습니다 -->
-<style>
-  @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap');
+  <!-- ⬇︎ CSS ONLY: 여기에 스타일을 삽입했습니다 -->
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap');
 
-  :root {
-    --primary:#5ee7df;  /* 민트 */
-    --accent:#b490ca;   /* 라벤더 */
-    --bg-dark:#0f2027;  /* 그라디언트 시작 */
-    --bg-mid:#203a43;
-    --bg-light:#2c5364; /* 그라디언트 끝 */
-    --white:#ffffff;
-  }
+    :root {
+      --primary:#5ee7df;
+      --accent:#b490ca;
+      --bg-dark:#0f2027;
+      --bg-mid:#203a43;
+      --bg-light:#2c5364;
+      --white:#ffffff;
+    }
 
-  *{box-sizing:border-box;margin:0;padding:0}
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
 
-  body{
-    height:100vh;
-    display:flex;
-    flex-direction:column;
-    align-items:center;
-    justify-content:center;
-    font-family:'Poppins',sans-serif;
-    color:var(--white);
-    background:linear-gradient(135deg,var(--bg-dark),var(--bg-mid),var(--bg-light));
-    text-align:center;
-    padding:1rem;
-  }
+    body {
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Poppins', sans-serif;
+      color: var(--white);
+      background: linear-gradient(135deg, var(--bg-dark), var(--bg-mid), var(--bg-light));
+      text-align: center;
+      padding: 1.5rem;
+    }
 
-  h1{font-size:2.5rem;font-weight:700;text-shadow:0 0 8px rgba(0,0,0,.6)}
+    h1 {
+      font-size: 2.5rem;
+      font-weight: 700;
+      text-shadow: 0 0 8px rgba(0, 0, 0, .6);
+      margin-bottom: 1rem;
+    }
 
-  hr{
-    width:80%;
-    margin:1rem auto;
-    border:0;
-    border-top:2px solid var(--accent);
-  }
+    hr {
+      width: 80%;
+      margin: 1rem auto;
+      border: 0;
+      border-top: 2px solid var(--accent);
+    }
 
-  form{
-    margin-top:1rem;
-    display:flex;
-    gap:0.75rem;
-    flex-wrap:wrap;
-    justify-content:center;
-  }
+    form {
+      margin-top: 1rem;
+      display: flex;
+      gap: 0.75rem;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
 
-  select{
-    padding:0.6rem 1rem;
-    border:none;
-    border-radius:0.75rem;
-    background:var(--bg-light);
-    color:var(--white);
-    font-size:1rem;
-    box-shadow:0 4px 8px rgba(0,0,0,.3) inset;
-    backdrop-filter:blur(4px);
-  }
+    select {
+      padding: 0.6rem 1rem;
+      border: none;
+      border-radius: 0.75rem;
+      background: var(--bg-light);
+      color: var(--white);
+      font-size: 1rem;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, .3) inset;
+      backdrop-filter: blur(4px);
+    }
 
-  input[type=submit]{
-    padding:0.6rem 1.2rem;
-    border:none;
-    border-radius:0.75rem;
-    background:var(--primary);
-    color:#0f2027;
-    font-weight:600;
-    cursor:pointer;
-    transition:.2s transform,.2s box-shadow;
-    box-shadow:0 4px 8px rgba(0,0,0,.3);
-  }
-  input[type=submit]:hover{
-    transform:translateY(-3px) scale(1.03);
-    box-shadow:0 6px 12px rgba(0,0,0,.4);
-  }
-</style>
+    input[type=submit] {
+      padding: 0.6rem 1.2rem;
+      border: none;
+      border-radius: 0.75rem;
+      background: var(--primary);
+      color: #0f2027;
+      font-weight: 600;
+      cursor: pointer;
+      transition: .2s transform, .2s box-shadow;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, .3);
+    }
+
+    input[type=submit]:hover {
+      transform: translateY(-3px) scale(1.03);
+      box-shadow: 0 6px 12px rgba(0, 0, 0, .4);
+    }
+
+    @media (max-width: 480px) {
+      body {
+        padding: 1rem;
+      }
+
+      h1 {
+        font-size: 1.8rem;
+      }
+
+      select, input[type=submit] {
+        width: 100%;
+        font-size: 1rem;
+      }
+
+      form {
+        flex-direction: column;
+        align-items: stretch;
+      }
+    }
+  </style>
 
 </head>
 <body>
-<h1>💎나의 탄생석을 알아보자💎</h1>
-<hr>
-당신이 태어난 달을 선택해주세요!<br>
-<form action="/birthstone" method="POST">
-<select name="month">
-	<option value="1월">1월</option>
-	<option value="2월">2월</option>
-	<option value="3월">3월</option>
-	<option value="4월">4월</option>
-	<option value="5월">5월</option>
-	<option value="6월">6월</option>
-	<option value="7월">7월</option>
-	<option value="8월">8월</option>
-	<option value="9월">9월</option>
-	<option value="10월">10월</option>
-	<option value="11월">11월</option>
-	<option value="12월">12월</option>
-</select>
-<input type="submit" value="전송">
-</form>
+
+  <h1>💎나의 탄생석을 알아보자💎</h1>
+  <hr>
+  당신이 태어난 달을 선택해주세요!<br>
+
+  <form action="/birthstone" method="POST">
+    <select name="month">
+      <option value="1월">1월</option>
+      <option value="2월">2월</option>
+      <option value="3월">3월</option>
+      <option value="4월">4월</option>
+      <option value="5월">5월</option>
+      <option value="6월">6월</option>
+      <option value="7월">7월</option>
+      <option value="8월">8월</option>
+      <option value="9월">9월</option>
+      <option value="10월">10월</option>
+      <option value="11월">11월</option>
+      <option value="12월">12월</option>
+    </select>
+    <input type="submit" value="전송">
+  </form>
+
 </body>
 </html>
