@@ -1,0 +1,142 @@
+/* ---------- Google Font ---------- */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap');
+
+/* ---------- Root Variables ---------- */
+:root {
+  --primary: #5ee7df;   /* 밝은 민트 */
+  --accent:  #b490ca;   /* 라벤더 */
+  --bg-dark: #0f2027;   /* 딥 네이비 → 청록 그라디언트 */
+  --bg-mid:  #203a43;
+  --bg-light:#2c5364;
+  --white:   #ffffff;
+}
+
+/* ---------- Reset ---------- */
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html, body { height: 100%; }
+
+/* ---------- Base ---------- */
+body {
+  font-family: "Poppins", sans-serif;
+  background: linear-gradient(135deg, var(--bg-dark) 0%, var(--bg-mid) 50%, var(--bg-light) 100%);
+  color: var(--white);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+}
+
+h1 {
+  font-size: 2rem;
+  font-weight: 600;
+  text-align: center;
+  margin-bottom: 1rem;
+  animation: neon 4s ease-in-out infinite;
+}
+
+@keyframes neon {
+  0%, 100% { text-shadow: 0 0 2px var(--primary), 0 0 10px var(--accent); }
+  50%      { text-shadow: 0 0 4px var(--primary), 0 0 20px var(--accent); }
+}
+
+/* ---------- Card / Glassmorphism ---------- */
+.card {
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-radius: 1rem;
+  padding: 2rem 2.5rem;
+  width: min(420px, 100%);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.25);
+}
+
+/* ---------- Image Strip ---------- */
+.image-strip {
+  display: flex;
+  justify-content: center;
+  gap: 0.75rem;
+  margin: 1rem 0 1.5rem;
+}
+
+.image-strip img {
+  width: 48px;
+  height: 48px;
+  object-fit: contain;
+  filter: drop-shadow(0 0 4px rgba(0, 0, 0, 0.5));
+  transition: transform 0.3s ease;
+}
+
+.image-strip img:hover {
+  transform: translateY(-4px) scale(1.05);
+}
+
+/* ---------- Form Elements ---------- */
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+select {
+  appearance: none;
+  background: rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(6px);
+  padding: 0.6rem 1rem;
+  border: none;
+  border-radius: 0.5rem;
+  font-size: 1rem;
+  color: var(--white);
+  outline: none;
+}
+
+select:focus {
+  box-shadow: 0 0 0 2px var(--primary);
+}
+
+.button, input[type="submit"] {
+  cursor: pointer;
+  background: linear-gradient(135deg, var(--primary), var(--accent));
+  border: none;
+  padding: 0.7rem 1rem;
+  border-radius: 0.5rem;
+  font-weight: 600;
+  color: #000;
+  transition: transform 0.25s, box-shadow 0.25s;
+}
+
+.button:hover, input[type="submit"]:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+}
+
+/* ---------- Result Specific ---------- */
+.result {
+  text-align: center;
+}
+
+.error {
+  color: #ff6b6b;
+  font-weight: 600;
+  margin: 1rem 0;
+}
+
+.back-link {
+  display: inline-block;
+  margin-top: 1.5rem;
+  color: var(--primary);
+  text-decoration: none;
+  font-weight: 600;
+  transition: color 0.2s;
+}
+
+.back-link:hover {
+  color: var(--accent);
+}
+
+/* ---------- Responsive ---------- */
+@media (max-width: 480px) {
+  body { padding: 1.5rem; }
+  .card { padding: 1.5rem; }
+  h1 { font-size: 1.6rem; }
+}

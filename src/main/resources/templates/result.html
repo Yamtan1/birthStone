@@ -2,22 +2,42 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>당신의 탄생석 정보</title>
+
+<!-- 동일 CSS 복붙 (외부 .css 파일로 빼셔도 됩니다) -->
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap');
+  :root{--primary:#5ee7df;--accent:#b490ca;--bg-dark:#0f2027;--bg-mid:#203a43;--bg-light:#2c5364;--white:#ffffff;}
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{
+    min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;
+    font-family:'Poppins',sans-serif;color:var(--white);
+    background:linear-gradient(135deg,var(--bg-dark),var(--bg-mid),var(--bg-light));text-align:center;padding:1rem;
+  }
+  h1{font-size:2.2rem;font-weight:700;text-shadow:0 0 8px rgba(0,0,0,.6)}
+  hr{width:80%;margin:1rem auto;border:0;border-top:2px solid var(--accent);}
+  .error{color:#ff7070;font-weight:600;margin-top:1rem}
+  a{color:var(--primary);margin-top:1.2rem;display:inline-block;text-decoration:none;font-weight:600}
+  a:hover{text-decoration:underline}
+</style>
+
 </head>
 <body>
 <h1>당신의 탄생석 정보</h1>
 <hr>
+
 <div th:if="${stone != null}">
-    <p><strong th:text="${stone.month}"></strong>의 보석은 <strong th:text="${stone.stone}">보석 이름</strong>입니다.</p>
+    <p><strong th:text="${stone.month}"></strong>의 보석은
+       <strong th:text="${stone.stone}">보석 이름</strong>입니다.</p>
     <p>설명: <span th:text="${stone.content}">보석 설명</span></p>
 </div>
 
 <!-- 오류 메시지가 있을 경우 -->
-<div th:if="${error != null}">
-    <p th:text="${error}" style="color:red;">에러 메시지</p>
+<div th:if="${error != null}" class="error">
+    <p th:text="${error}">에러 메시지</p>
 </div>
 
-<a th:href="@{/}">처음으로 돌아가기</a>
+<a th:href="@{/}">← 다시 선택하기</a>
 
 </body>
 </html>
