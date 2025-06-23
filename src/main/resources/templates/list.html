@@ -1,10 +1,38 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-<head><meta charset="UTF-8"><title>탄생석 목록</title></head>
+<head>
+<meta charset="UTF-8">
+<title>탄생석 목록</title>
+
+<!-- ⬇︎ CSS ONLY -->
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap');
+  :root{--primary:#5ee7df;--accent:#b490ca;--bg-dark:#0f2027;--bg-mid:#203a43;--bg-light:#2c5364;--white:#ffffff;}
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{
+    min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;
+    font-family:'Poppins',sans-serif;color:var(--white);
+    background:linear-gradient(135deg,var(--bg-dark),var(--bg-mid),var(--bg-light));
+    text-align:center;padding:1rem;
+  }
+  h2{font-size:2rem;font-weight:700;margin-bottom:1rem;text-shadow:0 0 8px rgba(0,0,0,.6)}
+  a{color:var(--primary);font-weight:600;text-decoration:none}
+  a:hover{text-decoration:underline}
+  table{
+    margin-top:1rem;border-collapse:collapse;
+    background:rgba(255,255,255,.06);backdrop-filter:blur(6px);
+    border-radius:1rem;overflow:hidden;box-shadow:0 8px 20px rgba(0,0,0,.35)
+  }
+  th,td{padding:0.75rem 1rem;font-size:0.9rem}
+  th{background:rgba(0,0,0,.25);font-weight:600}
+  td{border-top:1px solid rgba(255,255,255,.12)}
+  tr:hover td{background:rgba(255,255,255,.08)}
+</style>
+</head>
 <body>
 <h2>탄생석 목록</h2>
 <a href="/new">➕ 새로 추가</a>
-<table border="1">
+<table>
   <tr><th>ID</th><th>월</th><th>탄생석</th><th>설명</th><th>관리</th></tr>
   <tr th:each="s : ${stones}">
     <td th:text="${s.id}"></td>

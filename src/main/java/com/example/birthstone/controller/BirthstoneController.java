@@ -54,14 +54,14 @@ public class BirthstoneController {
     }
 
     @GetMapping("/edit/{id}")
-    public String edit(@PathVariable Long id, Model model) {
+    public String edit(@PathVariable("id") Long id, Model model) {
         var stone = service.getStone(id).orElseThrow();
         model.addAttribute("stone", stone);
         return "form";
     }
 
     @GetMapping("/delete/{id}")
-    public String delete(@PathVariable Long id) {
+    public String delete(@PathVariable("id") Long id) {
         service.deleteStone(id);
         return "redirect:/list";
     }
