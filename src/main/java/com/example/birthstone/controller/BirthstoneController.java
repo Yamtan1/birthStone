@@ -23,12 +23,13 @@ public class BirthstoneController {
 
     @PostMapping("/birthstone")
     public String getStone(@RequestParam("month") String month, Model model) {
+    	 System.out.println("입력된 month 값: " + month);
         var result = service.getStoneByMonth(month);
         if (result.isPresent()) {
             model.addAttribute("stone", result.get());
         } else {
             model.addAttribute("error", "해당 월의 탄생석 정보가 없습니다.");
         }
-        return "index";
+        return "result";
     }
 }
