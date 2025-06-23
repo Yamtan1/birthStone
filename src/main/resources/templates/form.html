@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head><meta charset="UTF-8"><title>탄생석 등록/수정</title></head>
+<body>
+<h2>탄생석 등록/수정</h2>
+<form action="/save" method="post" th:object="${stone}">
+    <input type="hidden" th:field="*{id}" />
+    월: <input type="text" th:field="*{month}" /><br>
+    탄생석: <input type="text" th:field="*{stone}" /><br>
+    설명: <input type="text" th:field="*{content}" /><br>
+    <button type="submit">저장</button>
+</form>
+<a href="/list">🔙 목록으로</a>
+</body>
+</html>

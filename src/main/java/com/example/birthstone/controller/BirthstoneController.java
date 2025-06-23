@@ -3,9 +3,12 @@ package com.example.birthstone.controller;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.example.birthstone.entity.BirthStoneEntity;
 import com.example.birthstone.service.BirthStoneService;
 
 import lombok.RequiredArgsConstructor;
@@ -32,4 +35,36 @@ public class BirthstoneController {
         }
         return "result";
     }
+    @GetMapping("/list")
+    public String list(Model model) {
+        model.addAttribute("stones", service.getAllStones());
+        return "list"; // list.html 필요
+    }
+
+    @GetMapping("/new")
+    public String newForm(Model model) {
+        model.addAttribute("stone", new BirthStoneEntity());
+        return "form";
+    }
+
+    @PostMapping("/save")
+    public String save(@ModelAttribute BirthStoneEntity stone) {
+        service.saveStone(stone);
+        return "redirect:/list";
+    }
+
+    @GetMapping("/edit/{id}")
+    public String edit(@PathVariable Long id, Model model) {
+        var stone = service.getStone(id).orElseThrow();
+        model.addAttribute("stone", stone);
+        return "form";
+    }
+
+    @GetMapping("/delete/{id}")
+    public String delete(@PathVariable Long id) {
+        service.deleteStone(id);
+        return "redirect:/list";
+    }
+
+    
 }

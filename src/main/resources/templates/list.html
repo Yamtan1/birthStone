@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head><meta charset="UTF-8"><title>탄생석 목록</title></head>
+<body>
+<h2>탄생석 목록</h2>
+<a href="/new">➕ 새로 추가</a>
+<table border="1">
+  <tr><th>ID</th><th>월</th><th>탄생석</th><th>설명</th><th>관리</th></tr>
+  <tr th:each="s : ${stones}">
+    <td th:text="${s.id}"></td>
+    <td th:text="${s.month}"></td>
+    <td th:text="${s.stone}"></td>
+    <td th:text="${s.content}"></td>
+    <td>
+      <a th:href="@{/edit/{id}(id=${s.id})}">수정</a> |
+      <a th:href="@{/delete/{id}(id=${s.id})}" onclick="return confirm('삭제하시겠습니까?')">삭제</a>
+    </td>
+  </tr>
+</table>
+</body>
+</html>
